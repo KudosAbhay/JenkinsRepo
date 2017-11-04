@@ -4,17 +4,18 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
+                echo 'Building initially..'
+                sh "python3 hello-world.py'
             }
         }
         stage('Test') {
             steps {
-                echo 'Testing..'
+                echo 'Testing phase..'
             }
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
+                echo 'Deploying phase....'
             }
         }
     }
