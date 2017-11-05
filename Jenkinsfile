@@ -2,11 +2,12 @@ node {
     
         stage('Build') {
             echo 'Building initially..'
+
             System.properties['os.name']
             if (System.properties['os.name'].toLowerCase().contains('windows')) {
-                println "it's Windows"
+                echo 'Windows'
             } else {
-                println "it's not Windows"
+                echo 'Not Windows'
             }
         }
     
