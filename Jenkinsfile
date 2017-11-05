@@ -1,20 +1,20 @@
 node {
     
         stage('Build') {
-            try {
-                echo 'Building initially..'
-                sh 'python3 hello-world.py'
-            }
-            catch (exc){
-                echo 'Failed to do so'
-            }     
+            echo 'Building initially..'
         }
     
         stage('Test') {
-                echo 'Testing phase..'
+            echo 'Testing phase..'
+            try {
+                sh 'python3 hello-world.py'
+            }
+            catch (exc) {
+                echo 'Failed to run the python script using bash'
+            }            
         }
     
         stage('Deploy') {
-                echo 'Deploying phase....'
+            echo 'Deploying phase....'
         }
 }
