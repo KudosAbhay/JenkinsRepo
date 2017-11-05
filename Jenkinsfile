@@ -11,6 +11,7 @@ node {
             }
             catch (exc) {
                 println 'Failed to run the python script using sh command'
+                sh 'C:\Users\abhay\AppData\Local\Programs\Python\Python35-32\python.exe sendErrorMessage.py'
             }            
         }
     
