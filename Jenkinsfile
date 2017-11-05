@@ -8,10 +8,11 @@ node {
             println 'Testing phase..'
             try {
                 sh 'python3 hello-world.py'
+                sh 'python3 sendSuccessMessage.py'
             }
             catch (exc) {
+                sh 'python3 sendErrorMessage.py'
                 println 'Failed to run the python script using sh command'
-                sh 'C:\Users\abhay\AppData\Local\Programs\Python\Python35-32\python.exe sendErrorMessage.py'
             }            
         }
     
