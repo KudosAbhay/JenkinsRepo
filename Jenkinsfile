@@ -2,13 +2,6 @@ node {
     
         stage('Build') {
             echo 'Building initially..'
-
-            System.properties['os.name']
-            if (System.properties['os.name'].toLowerCase().contains('windows')) {
-                echo 'Windows'
-            } else {
-                echo 'Not Windows'
-            }
         }
     
         stage('Test') {
@@ -17,7 +10,7 @@ node {
                 sh 'python3 hello-world.py'
             }
             catch (exc) {
-                echo 'Failed to run the python script using bash'
+                println 'Failed to run the python script using bash'
             }            
         }
     
