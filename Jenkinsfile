@@ -1,16 +1,20 @@
 node {
     
-        stage('Build') 
-        {
+        stage('Build') {
+            try {
                 echo 'Building initially..'
                 echo 'python3 hello-world.py'
+            }
+            catch (exc){
+                echo 'Failed to do so'
+            }     
         }
-        stage('Test') 
-        {
+    
+        stage('Test') {
                 echo 'Testing phase..'
         }
-        stage('Deploy') 
-        {
+    
+        stage('Deploy') {
                 echo 'Deploying phase....'
         }
 }
