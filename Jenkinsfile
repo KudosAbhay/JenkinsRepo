@@ -1,7 +1,13 @@
 node {
     
         stage('Build') {
-            println 'Building initially..'
+            try {
+                println 'Building initially..'
+                sh 'python3 sendSuccessMessage.py'
+            }
+            catch (exc) {
+                sh 'python3 sendErrorMessage.py'
+            }            
         }
     
         stage('Test') {
