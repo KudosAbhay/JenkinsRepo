@@ -1,6 +1,5 @@
 node {
     
-    stages {
         stage('Build') 
         {
             steps 
@@ -23,5 +22,4 @@ node {
                 echo 'Deploying phase....'
             }
         }
-    }
 }
