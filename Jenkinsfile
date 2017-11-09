@@ -3,6 +3,7 @@ node {
         stage('Build') {
             try {
                 println 'Building initially..'
+                sh 'hello.sh'
                 sh 'python3 sendSuccessMessage.py'
             }
             catch (exc) {
