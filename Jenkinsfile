@@ -4,7 +4,7 @@ node {
             try {
                 println 'Building initially..'
                 sh 'git init'
-                sh "git remote -v 'https://github.com/KudosAbhay/JenkinsRepo.git'"
+                sh 'git remote set-url origin https://github.com/KudosAbhay/JenkinsRepo.git'
                 sh 'git pull origin master'
             }
             catch (exc) {
