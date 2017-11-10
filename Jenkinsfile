@@ -16,7 +16,7 @@ node {
             println 'Testing phase..'
             try {
                 sh 'python3 PythonProject/hello-world.py'
-                sh 'go GoProject/hello.go'
+                sh 'go run GoProject/hello.go'
                 sh 'python3 sendSuccessMessage.py'
             }
             catch (exc) {
