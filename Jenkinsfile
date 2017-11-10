@@ -3,8 +3,8 @@ node {
         stage('Build') {
             try {
                 println 'Building initially..'
-                sh 'script.sh'
-                sh 'python3 sendSuccessMessage.py'
+                sh 'git init'
+                sh 'git clone https://github.com/KudosAbhay/JenkinsRepo.git'
             }
             catch (exc) {
                 sh 'python3 sendErrorMessage.py'
@@ -15,6 +15,7 @@ node {
         stage('Test') {
             println 'Testing phase..'
             try {
+                sh 'script.sh'
                 sh 'python3 PythonProject/hello.py'
                 sh 'go run GoProject/hello.go'
                 sh 'python3 sendSuccessMessage.py'
