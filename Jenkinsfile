@@ -4,7 +4,8 @@ node {
             try {
                 println 'Building initially..'
                 sh 'git init'
-                sh 'git clone https://github.com/KudosAbhay/JenkinsRepo.git'
+                sh "git remote -v 'https://github.com/KudosAbhay/JenkinsRepo.git'"
+                sh 'git pull origin master'
             }
             catch (exc) {
                 sh 'python3 sendErrorMessage.py'
