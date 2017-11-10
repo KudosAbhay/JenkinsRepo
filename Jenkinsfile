@@ -3,9 +3,6 @@ node {
         stage('Build') {
             try {
                 println 'Building initially..'
-                sh 'git init'
-                sh 'git remote add origin https://github.com/KudosAbhay/JenkinsRepo.git'
-                sh 'git pull origin master'
             }
             catch (exc) {
                 sh 'python3 sendErrorMessage.py'
