@@ -1,6 +1,6 @@
 node 
 {
-    phase_completion = 'False'
+    phase_completion = 'false'
     if(isUnix())
     {
         //Linux or Mac OS
@@ -29,7 +29,7 @@ node
                         sh 'python3 PythonProject/hello.py'
                         sh 'go run GoProject/hello.go'
                         // sh 'python3 sendSuccessMessage.py'
-                        phase_completion = 'True'
+                        phase_completion = 'true'
                     }
                     catch(exc)
                     {
@@ -96,7 +96,7 @@ node
 
 node
 {
-    if(isUnix() && phase_completion == 'True')
+    if(isUnix() && phase_completion == 'true')
     {
         stage('Deploy from Linux') 
         {
@@ -104,7 +104,7 @@ node
             // sh 'cp -R ../FreeStyle /home/abhay/Documents/prod/'
         }        
     }
-    else if((!isUnix()) && phase_completion == 'True')
+    else if((!isUnix()) && phase_completion == 'true')
     {
         stage('Deploy from Windows') 
         {
