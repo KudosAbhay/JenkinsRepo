@@ -13,7 +13,7 @@ node {
         stage('Test') {
             println 'Testing phase..'
             try {
-                println 'script.sh not running'
+                sh 'script.sh'
                 sh 'python3 PythonProject/hello.py'
                 sh 'go run GoProject/hello.go'
                 sh 'python3 sendSuccessMessage.py'
