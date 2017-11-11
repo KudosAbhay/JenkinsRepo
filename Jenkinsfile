@@ -25,16 +25,15 @@ node
                     println 'Build successfully. Testing phase...'
                     try
                     {
-                        sh 'sh script.sh'
                         sh 'python3 PythonProject/hello.py'
                         sh 'go run GoProject/hello.go'
-                        // sh 'python3 sendSuccessMessage.py'
                         phase_completion = 'true'
                     }
                     catch(exc)
                     {
                         currentBuild.result = 'FAILURE'
                         println 'Failure in Testing phase'
+                        sh 'sh error-test.sh'
                     }
                 }
                 break
@@ -42,7 +41,7 @@ node
             case 'FAILURE':
                 currentBuild.result = 'FAILURE'
                 println 'Failure in Building phase'
-                // bat 'python sendErrorMessage.py'
+                sh 'sh error-build.sh'
                 break
         }
     }
@@ -72,13 +71,13 @@ node
                     {
                         bat 'python PythonProject/hello.py'
                         bat 'go run GoProject/hello.go'
-                        // bat 'python sendSuccessMessage.py'
                         phase_completion = 'True'
                     }
                     catch(exc)
                     {
                         currentBuild.result = 'FAILURE'
                         println 'Failure in Testing phase'
+                        sh 'sh error-test.sh'
                     }
                 }
                 break
@@ -86,7 +85,7 @@ node
             case 'FAILURE':
                 currentBuild.result = 'FAILURE'
                 println 'Failure in Building phase'
-                // bat 'python sendErrorMessage.py'
+                sh 'sh error-build.sh'
                 break
         }
     }
@@ -102,6 +101,7 @@ node
         {
             println 'Final Deployment will be done'
             // sh 'cp -R ../FreeStyle /home/abhay/Documents/prod/'
+            sh 'sh success-message.sh'
         }        
     }
     else if((!isUnix()) && phase_completion == 'true')
@@ -110,6 +110,7 @@ node
         {
             println 'Final Deployment will be done'
             // bat 'xcopy  E:\JenkinsRepo D:\prod /h /s /e'
+            sh 'sh success-message.sh'
         }        
     }
     else
