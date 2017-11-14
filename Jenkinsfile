@@ -1,17 +1,17 @@
-node 
+node
 {
     phase_completion = 'false'
     if(isUnix())
     {
         //Linux or Mac OS
-        stage('Build') 
+        stage('Build')
         {
             try
             {
                 println 'Building initially..'
                 currentBuild.result = 'SUCCESS'
             }
-            catch (exc) 
+            catch (exc)
             {
                 currentBuild.result = 'FAILURE'
             }
@@ -27,6 +27,9 @@ node
                     {
                         sh 'python3 PythonProject/hello.py'
                         sh 'go run GoProject/hello.go'
+                        //sh 'npm test --prefix react-app/'
+                        sh 'npm build --prefix react-app'
+
                         phase_completion = 'true'
                     }
                     catch(exc)
@@ -37,7 +40,7 @@ node
                     }
                 }
                 break
-                
+
             case 'FAILURE':
                 currentBuild.result = 'FAILURE'
                 println 'Failure in Building phase'
@@ -48,14 +51,14 @@ node
     else
     {
         //Windows OS
-        stage('Build') 
+        stage('Build')
         {
             try
             {
                 println 'Building initially..'
                 currentBuild.result = 'SUCCESS'
             }
-            catch (exc) 
+            catch (exc)
             {
                 currentBuild.result = 'FAILURE'
             }
@@ -71,6 +74,8 @@ node
                     {
                         bat 'python PythonProject/hello.py'
                         bat 'go run GoProject/hello.go'
+                        //bat 'npm test --prefix react-app/'
+                        bat 'npm build --prefix react-app'
                         phase_completion = 'True'
                     }
                     catch(exc)
@@ -81,7 +86,7 @@ node
                     }
                 }
                 break
-                
+
             case 'FAILURE':
                 currentBuild.result = 'FAILURE'
                 println 'Failure in Building phase'
@@ -97,21 +102,21 @@ node
 {
     if(isUnix() && phase_completion == 'true')
     {
-        stage('Deploy from Linux') 
+        stage('Deploy from Linux')
         {
             println 'Final Deployment will be done'
             // sh 'cp -R ../FreeStyle /home/abhay/Documents/prod/'
             sh 'sh success-message.sh'
-        }        
+        }
     }
     else if((!isUnix()) && phase_completion == 'true')
     {
-        stage('Deploy from Windows') 
+        stage('Deploy from Windows')
         {
             println 'Final Deployment will be done'
-            // bat 'xcopy  E:\JenkinsRepo D:\prod /h /s /e'
+            bat 'xcopy  E:\JenkinsRepo D:\prod /h /s /e'
             sh 'sh success-message.sh'
-        }        
+        }
     }
     else
     {
